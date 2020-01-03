@@ -26,7 +26,6 @@ public class LoginController extends HttpServlet {
         RequestDispatcher rd = req.getRequestDispatcher("/view/web/login.jsp");
         rd.forward(req,resp);
     }
-
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         UserCommand command = FormUtils.populate(UserCommand.class,req);
@@ -39,12 +38,14 @@ public class LoginController extends HttpServlet {
                 {
                     if(userService.findRoleByUser(pojo).getRoleDTO().getName().equals(WebConstants.ROLE_ADMIN))
                     {
-                        req.setAttribute(WebConstants.ALERT,WebConstants.TYPE_SUCCESS);
-                        req.setAttribute(WebConstants.MESSAGE_RESPONSE,"ADMIN");
+                        resp.sendRedirect("/toeic_web_war_exploded/admin-home.html");
+//                        req.setAttribute(WebConstants.ALERT,WebConstants.TYPE_SUCCESS);
+//                        req.setAttribute(WebConstants.MESSAGE_RESPONSE,"ADMIN");
                     }else if(userService.findRoleByUser(pojo).getRoleDTO().getName().equals(WebConstants.ROLE_USER))
                     {
-                        req.setAttribute(WebConstants.ALERT,WebConstants.TYPE_SUCCESS);
-                        req.setAttribute(WebConstants.MESSAGE_RESPONSE,"USER");
+//                        req.setAttribute(WebConstants.ALERT,WebConstants.TYPE_SUCCESS);
+//                        req.setAttribute(WebConstants.MESSAGE_RESPONSE,"USER");
+                        resp.sendRedirect("/toeic_web_war_exploded/home.html");
                     }
                 }
             }
@@ -53,8 +54,9 @@ public class LoginController extends HttpServlet {
             log.error(e);
             req.setAttribute(WebConstants.ALERT,WebConstants.TYPE_ERROR);
             req.setAttribute(WebConstants.MESSAGE_RESPONSE,"Tên hoặc mật khẩu sai");
+            RequestDispatcher rd = req.getRequestDispatcher("/view/web/login.jsp");
+            rd.forward(req,resp);
         }
-        RequestDispatcher rd = req.getRequestDispatcher("/view/web/login.jsp");
-        rd.forward(req,resp);
+
     }
 }
