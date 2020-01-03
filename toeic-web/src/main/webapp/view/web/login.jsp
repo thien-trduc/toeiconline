@@ -28,7 +28,7 @@
                     <label class="block clearfix">
 														<span class="block input-icon input-icon-right">
 															<input type="text" class="form-control"
-                                                                   placeholder="Username" name="name"/>
+                                                                   placeholder="Username" name="pojo.name"/>
 															<i class="ace-icon fa fa-user"></i>
 														</span>
                     </label>
@@ -36,7 +36,14 @@
                     <label class="block clearfix">
 														<span class="block input-icon input-icon-right">
 															<input type="password" class="form-control"
-                                                                   placeholder="Password" name="password"/>
+                                                                   placeholder="Password" name="pojo.passWord"/>
+															<i class="ace-icon fa fa-lock"></i>
+														</span>
+                    </label>
+                    <label class="block clearfix">
+														<span class="block input-icon input-icon-right">
+															<input type="password" class="form-control"
+                                                                   placeholder="Confirm Password" name="confirmPassword"/>
 															<i class="ace-icon fa fa-lock"></i>
 														</span>
                     </label>
