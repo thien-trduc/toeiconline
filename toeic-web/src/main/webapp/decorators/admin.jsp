@@ -1,4 +1,5 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8"%>
 <%@include file="/common/taglib.jsp" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -12,17 +13,17 @@
     <script src="<c:url value='/template/admin/assets/js/ace-extra.min.js' />"></script>
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<%--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>--%>
-<%--    <script type='text/javascript' src='<c:url value="/template/admin/js/jquery-2.2.3.min.js" />'></script>--%>
-<%--    <script src="<c:url value='/template/admin/assets/js/jquery.2.1.1.min.js' />"></script>--%>
-<%--    <link rel="stylesheet" href="<c:url value="/template/admin/css/global_admin_style.css"/>">--%>
-<%--    <script type="text/javascript" src="<c:url value="/template/admin/js/global_admin_script.js"/>"></script>--%>
-<%--    <script src="<c:url value='/template/admin/assets/js/jquery.validate.min.js' />"></script>--%>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type='text/javascript' src='<c:url value="/template/admin/js/jquery-2.2.3.min.js" />'></script>
+    <script src="<c:url value='/template/admin/assets/js/jquery.2.1.1.min.js' />"></script>
+    <link rel="stylesheet" href="<c:url value="/template/admin/css/global_admin_style.css"/>">
+    <script type="text/javascript" src="<c:url value="/template/admin/js/global_admin_script.js"/>"></script>
+    <script src="<c:url value='/template/admin/assets/js/jquery.validate.min.js' />"></script>
 
-<%--    &lt;%&ndash;ckeditor plugin&ndash;%&gt;--%>
+    <%--ckeditor plugin--%>
 <%--    <script type="text/javascript" src="<c:url value="/ckeditor/ckeditor.js"/>"></script>--%>
 
-<%--    &lt;%&ndash;sweetalert&ndash;%&gt;--%>
+    <%--sweetalert--%>
 <%--    <script type='text/javascript' src='<c:url value="/template/admin/sweetalert/sweetalert2.min.js"/>'></script>--%>
 <%--    <link rel="stylesheet" href="<c:url value="/template/admin/sweetalert/sweetalert2.min.css"/>">--%>
 
