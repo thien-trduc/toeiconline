@@ -123,7 +123,7 @@ public class AbstractDao<ID extends Serializable,T> implements GenericDao<ID,T> 
         return result;
     }
 
-    public Object[] findByProperty(String property, Object value, String sortExpression, String sortDirection) {
+    public Object[] findByProperty(String property, Object value, String sortExpression, String sortDirection,Integer offset, Integer limit) {
         List<T> list = new ArrayList<T>();
         Transaction transaction = null;
         Object totalitem = 0;
@@ -151,6 +151,14 @@ public class AbstractDao<ID extends Serializable,T> implements GenericDao<ID,T> 
             if(value != null)
             {
                 queryProperTy1.setParameter("value",value);
+            }
+            if(offset != null && offset >= 0 )
+            {
+                queryProperTy1.setFirstResult(offset);
+            }
+            if(limit != null && limit >0)
+            {
+                queryProperTy1.setMaxResults(limit);
             }
             list = queryProperTy1.list();
 
