@@ -5,7 +5,7 @@ import java.sql.Timestamp;
 
 public class ListenGuidelineDTO implements Serializable {
     private Integer listenguidelineId;
-    private String tiTle;
+    private String title;
     private String image;
     private String content;
     private Timestamp createdDate;
@@ -18,12 +18,12 @@ public class ListenGuidelineDTO implements Serializable {
         this.listenguidelineId = listenguidelineId;
     }
 
-    public String getTiTle() {
-        return tiTle;
+    public String getTitle() {
+        return title;
     }
 
-    public void setTiTle(String tiTle) {
-        this.tiTle = tiTle;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getImage() {

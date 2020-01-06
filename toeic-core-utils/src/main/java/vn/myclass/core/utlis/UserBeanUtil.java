@@ -3,9 +3,7 @@ package vn.myclass.core.utlis;
 import vn.myclass.core.dto.UserDTO;
 import vn.myclass.core.persistence.enity.UserEntity;
 
-public class UserBeanUtil {
-    //class chua cac phuong thuc chuyen doi qua lai giua entity va bean
-    // phuong thức do du lieu tu entity vao dto
+public class UserBeanUtil {    // class chuyển doi du lieu tu entity qua dto va nguoc lai
     public static UserDTO entiTy2Dto(UserEntity entity)
     {
         UserDTO dto = new UserDTO();

@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class AbstractDao<ID extends Serializable,T> implements GenericDao<ID,T> {
     // class định nghĩa các phương thức thực hiện của session(truy vấn) chung
@@ -123,34 +124,54 @@ public class AbstractDao<ID extends Serializable,T> implements GenericDao<ID,T> 
         return result;
     }
 
-    public Object[] findByProperty(String property, Object value, String sortExpression, String sortDirection,Integer offset, Integer limit) {
+    public Object[] findByProperty(Map<String,Object> property, String sortExpression, String sortDirection, Integer offset, Integer limit) {
         List<T> list = new ArrayList<T>();
         Transaction transaction = null;
         Object totalitem = 0;
         // tạo đối tượng session
         Session session = HibernateUtil.getSessionFactory().openSession();
+        String[] params = new String[property.size()];
+        Object[] value = new Object[property.size()];
+        int i =0;
+        for(Map.Entry<String,Object> item : property.entrySet() )
+        {
+            params[i] = item.getKey();
+            value[i] = item.getValue();
+            i++;
+        }
         try {
             transaction = session.beginTransaction();
             //
+            // tìm danh sach
             StringBuilder sql = new StringBuilder("from ");
             sql.append(getPersistenceClassName());
-            if(property !=null && value !=null)
+            if(property.size()>0)
             {
-                sql.append(" where ");
-                sql.append(property);
-                sql.append(" = : value ");
+                for(int i1=0;i1<params.length;i1++)
+                {
+                    if(i1==0)
+                    {
+                        sql.append(" where ").append(params[i1]).append(" = : ").append(params[i1]);
+                    }
+                    else
+                    {
+                        sql.append(" and ").append(params[i1]).append(" = : ").append(params[i1]);
+                    }
+                }
             }
             if(sortExpression != null && sortDirection != null)
             {
-                sql.append("order by ");
+                sql.append(" order by ");
                 sql.append(sortExpression);
-                sql.append(" ");
-                sql.append(sortDirection.equals(CoreConstant.SORT_ASC) ? "asc" : "desc");
+                sql.append(" "+(sortDirection.equals(CoreConstant.SORT_ASC) ? "asc" : "desc"));
             }
             Query queryProperTy1 = session.createQuery(sql.toString());
-            if(value != null)
+            if(property.size()>0)
             {
-                queryProperTy1.setParameter("value",value);
+                for(int i2=0;i2<params.length;i2++)
+                {
+                    queryProperTy1.setParameter(params[i2],value[i2]);
+                }
             }
             if(offset != null && offset >= 0 )
             {
@@ -161,17 +182,30 @@ public class AbstractDao<ID extends Serializable,T> implements GenericDao<ID,T> 
                 queryProperTy1.setMaxResults(limit);
             }
             list = queryProperTy1.list();
-
+            // tìm tổng số phần tử
             StringBuilder sql2 = new StringBuilder("select count(*) from ");
             sql2.append(getPersistenceClassName());
-            if(property !=null &&  value != null)
+            if(property.size()>0)
             {
-                sql2.append(" where ").append(property).append(" =: value");
+                for(int k=0;k<params.length;k++)
+                {
+                    if(k==0)
+                    {
+                        sql.append(" where ").append(params[k]).append(" = : ").append(params[k]);
+                    }
+                    else
+                    {
+                        sql.append(" and ").append(params[k]).append(" = : ").append(params[k]);
+                    }
+                }
             }
             Query queryProperty2 = session.createQuery(sql2.toString());
-            if(value != null)
+            if(property.size()>0)
             {
-                queryProperty2.setParameter("value",value);
+                for(int k2=0;k2<params.length;k2++)
+                {
+                    queryProperty2.setParameter(params[k2],value[k2]);
+                }
             }
             // trả về tổng sổ phần tử
             totalitem = queryProperty2.list().get(0);

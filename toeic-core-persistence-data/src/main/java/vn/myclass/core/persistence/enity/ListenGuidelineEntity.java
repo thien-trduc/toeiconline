@@ -12,7 +12,7 @@ public class ListenGuidelineEntity {
     private Integer listenguidelineId;
 
     @Column(name = "title")
-    private String tiTle;
+    private String title;
 
     @Column(name = "image")
     private String image;
@@ -39,12 +39,12 @@ public class ListenGuidelineEntity {
         this.listenguidelineId = listenguidelineId;
     }
 
-    public String getTiTle() {
-        return tiTle;
+    public String getTitle() {
+        return title;
     }
 
-    public void setTiTle(String tiTle) {
-        this.tiTle = tiTle;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getImage() {
